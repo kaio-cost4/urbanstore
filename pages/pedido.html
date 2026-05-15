@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Faça seu pedido na UrbanStore. Entrega rápida e segura em todo Brasil." />
+  <title>Fazer Pedido — UrbanStore</title>
+  <link rel="stylesheet" href="../css/estilos.css" />
+  <style>
+    .pedido-layout {
+      max-width: var(--largura);
+      margin: 0 auto;
+      padding: 3rem 2rem 5rem;
+      display: grid;
+      grid-template-columns: 1.6fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+    .resumo-card {
+      background: var(--branco);
+      border-radius: var(--raio);
+      overflow: hidden;
+      box-shadow: var(--sombra);
+      position: sticky;
+      top: 90px;
+    }
+    .resumo-header {
+      background: var(--carvao);
+      color: #fff;
+      padding: 1.25rem 1.75rem;
+    }
+    .resumo-header h3 { color: #fff; font-size: 1.1rem; }
+    .resumo-itens {
+      padding: 1.5rem 1.75rem;
+      border-bottom: 1px solid var(--creme);
+    }
+    .resumo-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: .75rem 0;
+      border-bottom: 1px solid var(--creme);
+      gap: 1rem;
+    }
+    .resumo-item:last-child { border-bottom: none; }
+    .resumo-item-info {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+    .resumo-item-icone {
+      background: var(--creme);
+      width: 44px; height: 44px;
+      border-radius: var(--raio);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+    }
+    .resumo-item-nome { font-size: .88rem; font-weight: 600; color: var(--preto); }
+    .resumo-item-det  { font-size: .75rem; color: var(--texto-leve); }
+    .resumo-item-preco { font-family: var(--ff-titulo); font-weight: 700; color: var(--terracota); white-space: nowrap; }
+    .resumo-totais { padding: 1.25rem 1.75rem; }
+    .resumo-linha {
+      display: flex;
+      justify-content: space-between;
+      font-size: .88rem;
+      padding: .4rem 0;
+      color: var(--texto-leve);
+    }
+    .resumo-linha.total {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--preto);
+      border-top: 1px solid var(--creme);
+      margin-top: .5rem;
+      padding-top: .9rem;
+    }
+    .resumo-linha.total span:last-child { color: var(--terracota); font-family: var(--ff-titulo); font-size: 1.3rem; }
+    .etapas {
+      display: flex;
+      gap: 0;
+      margin-bottom: 2rem;
+      background: var(--branco);
+      border-radius: var(--raio);
+      box-shadow: var(--sombra);
+      overflow: hidden;
+    }
+    .etapa {
+      flex: 1;
+      padding: 1rem;
+      text-align: center;
+      font-size: .75rem;
+      font-weight: 600;
+      letter-spacing: .5px;
+      text-transform: uppercase;
+      color: var(--texto-leve);
+      border-right: 1px solid var(--creme);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: .4rem;
+    }
+    .etapa:last-child { border-right: none; }
+    .etapa.ativa { background: var(--terracota); color: #fff; }
+    .etapa.concluida { color: #22c55e; }
+    @media (max-width: 900px) {
+      .pedido-layout { grid-template-columns: 1fr; }
+      .resumo-card   { position: static; }
+    }
+  </style>
+</head>
+<body>
+
+  
+  <div id="overlay" class="overlay" aria-hidden="true"></div>
+  <aside id="drawer-carrinho" class="drawer" aria-label="Carrinho" aria-hidden="true" role="dialog">
+    <div class="drawer-header">
+      <h3>🛒 Meu Carrinho</h3>
+      <button id="fechar-carrinho" class="drawer-fechar" aria-label="Fechar">✕</button>
+    </div>
+    <div class="drawer-corpo">
+      <div id="carrinho-vazio" class="drawer-vazio"><span>🛍️</span><p>Carrinho vazio.</p></div>
+      <ul id="carrinho-lista"></ul>
+    </div>
+    <div id="carrinho-rodape" class="drawer-rodape" style="display:none;">
+      <div class="drawer-total"><span>Total</span><span class="drawer-total-valor" id="carrinho-total">R$ 0,00</span></div>
+      <div class="drawer-acoes"><a href="pedido.html" class="btn btn-primario">Finalizar pedido</a></div>
+      <button class="btn-limpar" id="btn-limpar-carrinho">Limpar carrinho</button>
+    </div>
+  </aside>
+
+  <a href="#conteudo-principal" class="skip-link">Pular para o conteúdo</a>
+
+  <header>
+    <div class="header-inner">
+      <a href="../index.html" class="logo">Urban<em>Store</em></a>
+      <nav aria-label="Principal">
+        <ul>
+          <li><a href="../index.html">Início</a></li>
+          <li><a href="produtos.html">Produtos</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="contato.html">Contato</a></li>
+          <li><a href="pedido.html" aria-current="page">Fazer Pedido</a></li>
+        </ul>
+      </nav>
+      <div class="header-acoes">
+        <button id="btn-menu-mobile" aria-label="Abrir menu" aria-expanded="false">☰</button>
+        <span style="color:rgba(255,255,255,.5); font-size:.8rem;">🔒 Compra segura</span>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <nav class="breadcrumb" aria-label="Localização">
+      <a href="../index.html">Início</a>
+      <span aria-hidden="true">›</span>
+      <a href="produtos.html">Produtos</a>
+      <span aria-hidden="true">›</span>
+      <span aria-current="page">Finalizar Pedido</span>
+    </nav>
+    <h1>Finalizar Pedido</h1>
+    <p>Preencha seus dados de entrega e pagamento para concluir a compra.</p>
+  </section>
+
+  <main id="conteudo-principal">
+    <div style="max-width:var(--largura); margin:0 auto; padding:2rem 2rem 0;">
+      <!-- ETAPAS -->
+      <nav class="etapas" aria-label="Etapas do checkout">
+        <div class="etapa concluida" aria-label="Concluído">✓ Carrinho</div>
+        <div class="etapa ativa" aria-current="step">📦 Entrega</div>
+        <div class="etapa">💳 Pagamento</div>
+        <div class="etapa">✅ Confirmação</div>
+      </nav>
+    </div>
+
+    <div class="pedido-layout">
+
+      <!-- FORMULÁRIO PEDIDO -->
+      <section aria-labelledby="form-pedido-titulo">
+        <form id="form-pedido" action="#" method="post" novalidate aria-label="Formulário de pedido">
+
+          <!-- DADOS PESSOAIS -->
+          <div class="form-card" style="margin-bottom:1.5rem;">
+            <h3 id="form-pedido-titulo" style="margin-bottom:.5rem;">👤 Dados Pessoais</h3>
+            <p>Informe seus dados para identificação do pedido.</p>
+            <div class="form-grid">
+              <div class="campo">
+                <label for="ped-nome">Nome <span class="obrigatorio">*</span></label>
+                <input type="text" id="ped-nome" name="nome" placeholder="Seu nome" required minlength="2" autocomplete="given-name" />
+              </div>
+              <div class="campo">
+                <label for="ped-sobrenome">Sobrenome <span class="obrigatorio">*</span></label>
+                <input type="text" id="ped-sobrenome" name="sobrenome" placeholder="Seu sobrenome" required autocomplete="family-name" />
+              </div>
+              <div class="campo">
+                <label for="ped-email">E-mail <span class="obrigatorio">*</span></label>
+                <input type="email" id="ped-email" name="email" placeholder="seu@email.com" required autocomplete="email" />
+              </div>
+              <div class="campo">
+                <label for="ped-tel">Celular <span class="obrigatorio">*</span></label>
+                <input type="tel" id="ped-tel" name="telefone" placeholder="(11) 99999-0000" required pattern="\(\d{2}\)\s?\d{4,5}-\d{4}" autocomplete="tel" />
+              </div>
+              <div class="campo">
+                <label for="ped-cpf">CPF <span class="obrigatorio">*</span></label>
+                <input type="text" id="ped-cpf" name="cpf" placeholder="000.000.000-00" required pattern="\d{3}\.\d{3}\.\d{3}-\d{2}" />
+                <span class="campo-hint">Necessário para emissão da nota fiscal</span>
+                <span class="campo-erro" aria-live="polite"></span>
+              </div>
+              <div class="campo">
+                <label for="ped-nascimento">Data de Nascimento</label>
+                <input type="date" id="ped-nascimento" name="nascimento" max="2006-12-31" autocomplete="bday" />
+              </div>
+            </div>
+          </div>
+
+          <!-- ENDEREÇO DE ENTREGA -->
+          <div class="form-card" style="margin-bottom:1.5rem;">
+            <h3 style="margin-bottom:.5rem;">📍 Endereço de Entrega</h3>
+            <p>Onde devemos enviar seu pedido?</p>
+            <div class="form-grid">
+              <div class="campo">
+                <label for="ped-cep">CEP <span class="obrigatorio">*</span></label>
+                <input type="text" id="ped-cep" name="cep" placeholder="00000-000" required pattern="\d{5}-?\d{3}" autocomplete="postal-code" />
+                <span class="campo-hint">Formato: 00000-000</span>
+                <span class="campo-erro" aria-live="polite"></span>
+              </div>
+              <div class="campo">
+                <label for="ped-estado">Estado <span class="obrigatorio">*</span></label>
+                <select id="ped-estado" name="estado" required autocomplete="address-level1">
+                  <option value="" disabled selected>Selecione...</option>
+                  <option>AC</option><option>AL</option><option>AP</option>
+                  <option>AM</option><option>BA</option><option>CE</option>
+                  <option>DF</option><option>ES</option><option>GO</option>
+                  <option>MA</option><option>MT</option><option>MS</option>
+                  <option>MG</option><option>PA</option><option>PB</option>
+                  <option>PR</option><option>PE</option><option>PI</option>
+                  <option>RJ</option><option>RN</option><option>RS</option>
+                  <option>RO</option><option>RR</option><option>SC</option>
+                  <option selected>SP</option><option>SE</option><option>TO</option>
+                </select>
+              </div>
+              <div class="campo campo-completo">
+                <label for="ped-rua">Rua / Avenida <span class="obrigatorio">*</span></label>
+                <input type="text" id="ped-rua" name="rua" placeholder="Nome da rua ou avenida" required autocomplete="street-address" />
+              </div>
+              <div class="campo">
+                <label for="ped-numero">Número <span class="obrigatorio">*</span></label>
+                <input type="number" id="ped-numero" name="numero" placeholder="123" required min="1" max="99999" />
+              </div>
+              <div class="campo">
+                <label for="ped-complemento">Complemento</label>
+                <input type="text" id="ped-complemento" name="complemento" placeholder="Apto, Bloco, Casa..." autocomplete="address-line2" />
+              </div>
+              <div class="campo">
+                <label for="ped-bairro">Bairro <span class="obrigatorio">*</span></label>
+                <input type="text" id="ped-bairro" name="bairro" placeholder="Nome do bairro" required autocomplete="address-level3" />
+              </div>
+              <div class="campo">
+                <label for="ped-cidade">Cidade <span class="obrigatorio">*</span></label>
+                <input type="text" id="ped-cidade" name="cidade" placeholder="Nome da cidade" required autocomplete="address-level2" />
+              </div>
+
+              <!-- Frete -->
+              <div class="campo campo-completo">
+                <label for="ped-frete">Modalidade de Entrega <span class="obrigatorio">*</span></label>
+                <select id="ped-frete" name="frete" required>
+                  <option value="" disabled selected>Selecione o frete...</option>
+                  <option value="pac">PAC — Econômico (5–8 dias úteis) — Grátis</option>
+                  <option value="sedex">SEDEX — Expresso (1–3 dias úteis) — R$ 18,90</option>
+                  <option value="sedex10">SEDEX 10 — Até 10h do dia seguinte — R$ 39,90</option>
+                  <option value="retirada">Retirada na loja (Pinheiros, SP) — Grátis</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- PAGAMENTO -->
+          <div class="form-card" style="margin-bottom:1.5rem;">
+            <h3 style="margin-bottom:.5rem;">💳 Pagamento</h3>
+            <p>Escolha a forma de pagamento preferida.</p>
+            <div class="form-grid">
+              <div class="campo campo-completo">
+                <label for="ped-pagamento">Forma de Pagamento <span class="obrigatorio">*</span></label>
+                <select id="ped-pagamento" name="pagamento" required>
+                  <option value="" disabled selected>Selecione...</option>
+                  <optgroup label="Cartão">
+                    <option value="credito">Cartão de Crédito (até 12x sem juros)</option>
+                    <option value="debito">Cartão de Débito</option>
+                  </optgroup>
+                  <optgroup label="Digital">
+                    <option value="pix">Pix (5% de desconto)</option>
+                    <option value="boleto">Boleto Bancário (3 dias úteis)</option>
+                  </optgroup>
+                </select>
+              </div>
+              <div class="campo">
+                <label for="ped-parcelas">Número de Parcelas</label>
+                <select id="ped-parcelas" name="parcelas">
+                  <option value="1">1x de R$ 469,70 (sem juros)</option>
+                  <option value="2">2x de R$ 234,85 (sem juros)</option>
+                  <option value="3">3x de R$ 156,57 (sem juros)</option>
+                  <option value="6">6x de R$ 78,28 (sem juros)</option>
+                  <option value="12">12x de R$ 39,14 (sem juros)</option>
+                </select>
+              </div>
+              <div class="campo">
+                <label for="ped-cupom">Cupom de Desconto</label>
+                <input type="text" id="ped-cupom" name="cupom" placeholder="URBAN10" pattern="[A-Z0-9]{4,15}" />
+                <span class="campo-hint">Letras maiúsculas e números (4–15 caracteres)</span>
+                <span class="campo-erro" aria-live="polite"></span>
+              </div>
+
+              <div class="campo campo-completo">
+                <label for="ped-obs">Observações do Pedido</label>
+                <textarea id="ped-obs" name="observacoes" placeholder="Alguma instrução especial para entrega, embalagem para presente, etc." rows="3" maxlength="500"></textarea>
+              </div>
+
+              <hr class="form-divisor" />
+
+              <label class="checkbox-label">
+                <input type="checkbox" name="termos" required />
+                Li e concordo com os <a href="#">Termos de Compra</a> e a
+                <a href="#">Política de Privacidade</a>.
+                <span class="obrigatorio">*</span>
+              </label>
+
+              <label class="checkbox-label">
+                <input type="checkbox" name="newsletter" />
+                Quero receber promoções e novidades por e-mail.
+              </label>
+
+              <div class="msg-sucesso" id="msg-pedido" role="alert" aria-live="polite" style="display:none;">
+                🎉 <span>Pedido realizado com sucesso! Você receberá um e-mail de confirmação em breve.</span>
+              </div>
+
+              <div class="form-acoes">
+                <span class="aviso">🔒 Pagamento 100% seguro via SSL</span>
+                <button type="submit" class="btn btn-primario" style="font-size:1rem; padding:1rem 2.5rem;">
+                  Finalizar Pedido →
+                </button>
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </section>
+
+      <!-- RESUMO DO PEDIDO -->
+      <aside aria-labelledby="resumo-titulo">
+        <div class="resumo-card">
+          <div class="resumo-header">
+            <h3 id="resumo-titulo">🛒 Resumo do Pedido</h3>
+          </div>
+          <div class="resumo-itens">
+            <div class="resumo-item">
+              <div class="resumo-item-info">
+                <div class="resumo-item-icone" aria-hidden="true">👗</div>
+                <div>
+                  <div class="resumo-item-nome">Vestido Midi Romântico</div>
+                  <div class="resumo-item-det">Tam. M · Qty: 1</div>
+                </div>
+              </div>
+              <span class="resumo-item-preco">R$ 189,90</span>
+            </div>
+            <div class="resumo-item">
+              <div class="resumo-item-info">
+                <div class="resumo-item-icone" aria-hidden="true">👟</div>
+                <div>
+                  <div class="resumo-item-nome">Tênis Urban Runner</div>
+                  <div class="resumo-item-det">N. 39 · Qty: 1</div>
+                </div>
+              </div>
+              <span class="resumo-item-preco">R$ 329,90</span>
+            </div>
+            <div class="resumo-item">
+              <div class="resumo-item-info">
+                <div class="resumo-item-icone" aria-hidden="true">🕶️</div>
+                <div>
+                  <div class="resumo-item-nome">Óculos Solar Retrô</div>
+                  <div class="resumo-item-det">Único · Qty: 1</div>
+                </div>
+              </div>
+              <span class="resumo-item-preco">R$ 159,90</span>
+            </div>
+          </div>
+          <div class="resumo-totais">
+            <div class="resumo-linha"><span>Subtotal (3 itens)</span><span>R$ 679,70</span></div>
+            <div class="resumo-linha"><span>Frete</span><span style="color:#22c55e;">Grátis</span></div>
+            <div class="resumo-linha"><span>Desconto cupom</span><span style="color:#22c55e;">– R$ 67,97</span></div>
+            <div class="resumo-linha total"><span>Total</span><span>R$ 611,73</span></div>
+            <p style="font-size:.72rem; color:var(--texto-leve); margin-top:1rem; text-align:center;">
+              ou em até 12x de R$ 50,98 sem juros
+            </p>
+          </div>
+        </div>
+
+        <!-- GARANTIAS -->
+        <div style="margin-top:1.25rem; background:var(--branco); border-radius:var(--raio); padding:1.25rem 1.5rem; box-shadow:var(--sombra);">
+          <h4 style="font-size:.78rem; letter-spacing:1px; text-transform:uppercase; color:var(--texto-leve); margin-bottom:1rem;">Suas garantias</h4>
+          <ul style="list-style:none; display:flex; flex-direction:column; gap:.75rem;">
+            <li style="display:flex; align-items:center; gap:.65rem; font-size:.83rem; color:var(--texto);">
+              <span style="font-size:1.1rem;">🔒</span> Compra 100% segura (SSL)
+            </li>
+            <li style="display:flex; align-items:center; gap:.65rem; font-size:.83rem; color:var(--texto);">
+              <span style="font-size:1.1rem;">↩️</span> Troca grátis em até 30 dias
+            </li>
+            <li style="display:flex; align-items:center; gap:.65rem; font-size:.83rem; color:var(--texto);">
+              <span style="font-size:1.1rem;">🚚</span> Rastreamento em tempo real
+            </li>
+            <li style="display:flex; align-items:center; gap:.65rem; font-size:.83rem; color:var(--texto);">
+              <span style="font-size:1.1rem;">💬</span> Suporte em até 24h úteis
+            </li>
+          </ul>
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-col">
+        <div class="footer-logo">Urban<em>Store</em></div>
+        <p>Moda contemporânea para quem vive a cidade com estilo e intenção.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Loja</h4>
+        <ul>
+          <li><a href="produtos.html">Todos os produtos</a></li>
+          <li><a href="pedido.html">Fazer pedido</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="sobre.html">Sobre nós</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Ajuda</h4>
+        <ul>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="#">Trocas</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 UrbanStore. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+    <script src="../js/carrinho.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/formularios.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      inicializarCarrinho();
+      inicializarUI();
+      inicializarContadores();
+      inicializarFormulario('form-pedido', () => {
+        const msg = document.getElementById('msg-pedido');
+        msg.style.display = 'flex';
+        // Após finalizar pedido, esvazia o carrinho
+        localStorage.removeItem('urbanstore_carrinho');
+        document.querySelectorAll('.carrinho-num').forEach(el => el.textContent = '0');
+        document.getElementById('form-pedido').reset();
+        document.querySelectorAll('.campo-valido').forEach(el => el.classList.remove('campo-valido'));
+        msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    });
+  </script>
+
+  <button id="btn-topo" aria-label="Voltar ao topo" aria-hidden="true">↑</button>
+</body>
+</html>

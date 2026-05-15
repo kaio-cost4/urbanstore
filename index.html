@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="UrbanStore — Moda, calçados e acessórios contemporâneos para o estilo urbano moderno." />
+  <title>UrbanStore — Moda & Lifestyle</title>
+  <link rel="stylesheet" href="css/estilos.css" />
+</head>
+<body>
+
+  <a href="#conteudo-principal" class="skip-link">Pular para o conteúdo</a>
+
+  <!-- ===== HEADER ===== -->
+  <header>
+    <div class="header-inner">
+      <a href="index.html" class="logo" aria-label="UrbanStore — Página inicial">
+        Urban<em>Store</em>
+      </a>
+
+      <nav aria-label="Principal">
+        <ul>
+          <li><a href="index.html" aria-current="page">Início</a></li>
+          <li><a href="pages/produtos.html">Produtos</a></li>
+          <li><a href="pages/sobre.html">Sobre</a></li>
+          <li><a href="pages/contato.html">Contato</a></li>
+          <li><a href="pages/pedido.html">Fazer Pedido</a></li>
+        </ul>
+      </nav>
+
+      <div class="header-acoes">
+        <a href="pages/produtos.html" class="icone-btn" aria-label="Pesquisar">🔍</a>
+        <a href="pages/contato.html" class="icone-btn" aria-label="Minha conta">👤</a>
+        <a href="pages/pedido.html" class="btn-carrinho" aria-label="Carrinho de compras, 3 itens">
+          🛒 Carrinho <span class="carrinho-num" aria-label="3 itens">3</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ===== MAIN ===== -->
+  <main id="conteudo-principal">
+
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="hero-titulo">
+      <div class="hero-inner container">
+        <div class="hero-conteudo">
+          <p class="hero-kicker">Nova Coleção — Outono 2025</p>
+          <h1 id="hero-titulo">
+            Moda que conta<br />
+            <em>sua história.</em>
+          </h1>
+          <p>
+            Peças selecionadas para o estilo urbano contemporâneo.
+            Design autoral, materiais premium, preços justos.
+          </p>
+          <div class="hero-acoes">
+            <a href="pages/produtos.html" class="btn btn-primario">Ver Coleção</a>
+            <a href="pages/sobre.html"    class="btn btn-outline-branco">Nossa História</a>
+          </div>
+        </div>
+
+        <div class="hero-visual" aria-hidden="true">
+          <div class="hero-cards">
+            <div class="hero-card">
+              <div class="hero-card-icone">👗</div>
+              <h4>Roupas</h4>
+              <p>+200 modelos</p>
+            </div>
+            <div class="hero-card">
+              <div class="hero-card-icone">👟</div>
+              <h4>Calçados</h4>
+              <p>+80 modelos</p>
+            </div>
+            <div class="hero-card">
+              <div class="hero-card-icone">👜</div>
+              <h4>Acessórios</h4>
+              <p>+120 itens</p>
+            </div>
+            <div class="hero-card">
+              <div class="hero-card-icone">✨</div>
+              <h4>Novidades</h4>
+              <p>Toda semana</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- BENEFÍCIOS -->
+    <aside class="beneficios" aria-label="Benefícios">
+      <ul class="beneficios-lista">
+        <li><span aria-hidden="true">🚚</span> Frete grátis acima de R$ 299</li>
+        <li><span aria-hidden="true">↩️</span> Troca em até 30 dias</li>
+        <li><span aria-hidden="true">🔒</span> Pagamento 100% seguro</li>
+        <li><span aria-hidden="true">⭐</span> +12.000 clientes satisfeitos</li>
+      </ul>
+    </aside>
+
+    <!-- CATEGORIAS -->
+    <section class="secao" aria-labelledby="cat-titulo">
+      <div class="container">
+        <div class="secao-topo">
+          <div>
+            <p class="secao-label">Explorar</p>
+            <h2 id="cat-titulo">Categorias</h2>
+          </div>
+          <a href="pages/produtos.html" class="btn btn-secundario">Ver todas</a>
+        </div>
+
+        <ul class="categorias-lista" aria-label="Categorias de produtos">
+          <li>
+            <a href="pages/produtos.html?cat=feminino">
+              <span class="cat-icone" aria-hidden="true">👗</span>
+              <span class="cat-nome">Feminino</span>
+              <span class="cat-qtd">128 itens</span>
+            </a>
+          </li>
+          <li>
+            <a href="pages/produtos.html?cat=masculino">
+              <span class="cat-icone" aria-hidden="true">👔</span>
+              <span class="cat-nome">Masculino</span>
+              <span class="cat-qtd">94 itens</span>
+            </a>
+          </li>
+          <li>
+            <a href="pages/produtos.html?cat=calcados">
+              <span class="cat-icone" aria-hidden="true">👟</span>
+              <span class="cat-nome">Calçados</span>
+              <span class="cat-qtd">83 itens</span>
+            </a>
+          </li>
+          <li>
+            <a href="pages/produtos.html?cat=acessorios">
+              <span class="cat-icone" aria-hidden="true">💍</span>
+              <span class="cat-nome">Acessórios</span>
+              <span class="cat-qtd">117 itens</span>
+            </a>
+          </li>
+          <li>
+            <a href="pages/produtos.html?cat=inverno">
+              <span class="cat-icone" aria-hidden="true">🧥</span>
+              <span class="cat-nome">Inverno</span>
+              <span class="cat-qtd">56 itens</span>
+            </a>
+          </li>
+          <li>
+            <a href="pages/produtos.html?cat=sale">
+              <span class="cat-icone" aria-hidden="true">🏷️</span>
+              <span class="cat-nome">Promoções</span>
+              <span class="cat-qtd">42 itens</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- PRODUTOS EM DESTAQUE -->
+    <section class="secao secao-bg-escuro" aria-labelledby="dest-titulo">
+      <div class="container">
+        <div class="secao-topo">
+          <div>
+            <p class="secao-label">Seleção da semana</p>
+            <h2 id="dest-titulo">Produtos em Destaque</h2>
+          </div>
+          <a href="pages/produtos.html" class="btn btn-outline-branco">Ver catálogo</a>
+        </div>
+
+        <ul class="produtos-grid" aria-label="Produtos em destaque">
+          <li class="produto-card">
+            <div class="produto-imagem" aria-hidden="true">👗
+              <span class="produto-badge badge">Novo</span>
+            </div>
+            <div class="produto-acoes" aria-hidden="true">
+              <button>🛒 Adicionar</button>
+              <button>♡</button>
+            </div>
+            <div class="produto-info">
+              <p class="produto-categoria">Feminino · Vestidos</p>
+              <h3>Vestido Midi Romântico</h3>
+              <div class="produto-preco-wrapper">
+                <span class="produto-preco">R$ 189,90</span>
+                <span class="produto-preco-antigo">R$ 249,90</span>
+              </div>
+            </div>
+          </li>
+          <li class="produto-card">
+            <div class="produto-imagem" aria-hidden="true">👟
+              <span class="produto-badge badge">Popular</span>
+            </div>
+            <div class="produto-acoes" aria-hidden="true">
+              <button>🛒 Adicionar</button>
+              <button>♡</button>
+            </div>
+            <div class="produto-info">
+              <p class="produto-categoria">Calçados · Tênis</p>
+              <h3>Tênis Urban Runner</h3>
+              <div class="produto-preco-wrapper">
+                <span class="produto-preco">R$ 329,90</span>
+              </div>
+            </div>
+          </li>
+          <li class="produto-card">
+            <div class="produto-imagem" aria-hidden="true">🧥</div>
+            <div class="produto-acoes" aria-hidden="true">
+              <button>🛒 Adicionar</button>
+              <button>♡</button>
+            </div>
+            <div class="produto-info">
+              <p class="produto-categoria">Inverno · Casacos</p>
+              <h3>Casaco Trench Clássico</h3>
+              <div class="produto-preco-wrapper">
+                <span class="produto-preco">R$ 459,90</span>
+                <span class="produto-preco-antigo">R$ 599,90</span>
+              </div>
+            </div>
+          </li>
+          <li class="produto-card">
+            <div class="produto-imagem" aria-hidden="true">👜
+              <span class="produto-badge badge badge-outline">Sale</span>
+            </div>
+            <div class="produto-acoes" aria-hidden="true">
+              <button>🛒 Adicionar</button>
+              <button>♡</button>
+            </div>
+            <div class="produto-info">
+              <p class="produto-categoria">Acessórios · Bolsas</p>
+              <h3>Bolsa Couro Moderno</h3>
+              <div class="produto-preco-wrapper">
+                <span class="produto-preco">R$ 279,90</span>
+                <span class="produto-preco-antigo">R$ 399,90</span>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </section>
+
+    <!-- BANNERS PROMOÇÕES -->
+    <section class="secao" aria-labelledby="promo-titulo">
+      <div class="container">
+        <div class="secao-topo">
+          <div>
+            <p class="secao-label">Ofertas especiais</p>
+            <h2 id="promo-titulo">Em Alta Esta Semana</h2>
+          </div>
+        </div>
+        <div class="banner-duplo">
+          <article class="banner-item">
+            <span class="banner-emoji" aria-hidden="true">👗</span>
+            <div class="banner-texto">
+              <span class="badge">Até 40% off</span>
+              <h3>Coleção Feminina</h3>
+              <p>As peças mais desejadas da estação com preços imperdíveis.</p>
+              <a href="pages/produtos.html?cat=feminino" class="btn btn-outline-branco">Comprar agora</a>
+            </div>
+          </article>
+          <article class="banner-item">
+            <span class="banner-emoji" aria-hidden="true">👟</span>
+            <div class="banner-texto">
+              <span class="badge">Lançamento</span>
+              <h3>Novos Calçados</h3>
+              <p>Tendências internacionais chegando à sua cidade primeiro.</p>
+              <a href="pages/produtos.html?cat=calcados" class="btn btn-outline-branco">Explorar</a>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- SOBRE (resumo) -->
+    <section class="secao" aria-labelledby="sobre-titulo">
+      <div class="container">
+        <div class="sobre-home">
+          <div class="sobre-visual" aria-hidden="true">🏙️</div>
+          <div class="sobre-texto">
+            <p class="secao-label">Quem somos</p>
+            <h2 id="sobre-titulo">Moda com propósito desde 2018</h2>
+            <p>
+              A UrbanStore nasceu da vontade de democratizar o acesso à moda de qualidade.
+              Acreditamos que estilo não deve ser privilégio de poucos — é uma forma de
+              expressão individual acessível a todos.
+            </p>
+            <p>
+              Curadoria rigorosa, fornecedores responsáveis e um time apaixonado por moda:
+              esses são os pilares que sustentam cada peça que chega até você.
+            </p>
+            <a href="pages/sobre.html" class="btn btn-secundario">Conhecer nossa história</a>
+
+            <div class="sobre-stats" aria-label="Números da UrbanStore">
+              <div class="stat">
+                <div class="stat-num">12k+</div>
+                <div class="stat-desc">Clientes ativos</div>
+              </div>
+              <div class="stat">
+                <div class="stat-num">400+</div>
+                <div class="stat-desc">Produtos</div>
+              </div>
+              <div class="stat">
+                <div class="stat-num">7 anos</div>
+                <div class="stat-desc">No mercado</div>
+              </div>
+              <div class="stat">
+                <div class="stat-num">4.9★</div>
+                <div class="stat-desc">Avaliação média</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-col">
+        <div class="footer-logo">Urban<em>Store</em></div>
+        <p>Moda contemporânea para quem vive a cidade com estilo e intenção.</p>
+        <nav class="footer-social" aria-label="Redes sociais">
+          <a href="#" class="social-link" aria-label="Instagram">📷</a>
+          <a href="#" class="social-link" aria-label="Facebook">📘</a>
+          <a href="#" class="social-link" aria-label="TikTok">🎵</a>
+          <a href="#" class="social-link" aria-label="Pinterest">📌</a>
+        </nav>
+      </div>
+      <div class="footer-col">
+        <h4>Loja</h4>
+        <ul>
+          <li><a href="pages/produtos.html">Todos os produtos</a></li>
+          <li><a href="pages/produtos.html?cat=feminino">Feminino</a></li>
+          <li><a href="pages/produtos.html?cat=masculino">Masculino</a></li>
+          <li><a href="pages/produtos.html?cat=calcados">Calçados</a></li>
+          <li><a href="pages/produtos.html?cat=sale">Promoções</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="pages/sobre.html">Sobre nós</a></li>
+          <li><a href="pages/contato.html">Contato</a></li>
+          <li><a href="#">Trabalhe conosco</a></li>
+          <li><a href="#">Imprensa</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Ajuda</h4>
+        <ul>
+          <li><a href="#">Rastrear pedido</a></li>
+          <li><a href="#">Trocas e devoluções</a></li>
+          <li><a href="#">Tabela de medidas</a></li>
+          <li><a href="#">FAQ</a></li>
+          <li><a href="pages/pedido.html">Fazer pedido</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 UrbanStore. Todos os direitos reservados.</p>
+      <nav aria-label="Links legais">
+        <a href="#">Privacidade</a> &nbsp;·&nbsp;
+        <a href="#">Termos de uso</a> &nbsp;·&nbsp;
+        <a href="#">Cookies</a>
+      </nav>
+    </div>
+  </footer>
+
+</body>
+</html>

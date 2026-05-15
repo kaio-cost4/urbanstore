@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Entre em contato com a UrbanStore. Tire dúvidas, envie sugestões ou fale com nosso atendimento." />
+  <title>Contato — UrbanStore</title>
+  <link rel="stylesheet" href="../css/estilos.css" />
+</head>
+<body>
+
+  
+  <div id="overlay" class="overlay" aria-hidden="true"></div>
+  <aside id="drawer-carrinho" class="drawer" aria-label="Carrinho" aria-hidden="true" role="dialog">
+    <div class="drawer-header">
+      <h3>🛒 Meu Carrinho</h3>
+      <button id="fechar-carrinho" class="drawer-fechar" aria-label="Fechar">✕</button>
+    </div>
+    <div class="drawer-corpo">
+      <div id="carrinho-vazio" class="drawer-vazio"><span>🛍️</span><p>Carrinho vazio.</p></div>
+      <ul id="carrinho-lista"></ul>
+    </div>
+    <div id="carrinho-rodape" class="drawer-rodape" style="display:none;">
+      <div class="drawer-total"><span>Total</span><span class="drawer-total-valor" id="carrinho-total">R$ 0,00</span></div>
+      <div class="drawer-acoes"><a href="pedido.html" class="btn btn-primario">Finalizar pedido</a></div>
+      <button class="btn-limpar" id="btn-limpar-carrinho">Limpar carrinho</button>
+    </div>
+  </aside>
+
+  <a href="#conteudo-principal" class="skip-link">Pular para o conteúdo</a>
+
+  <header>
+    <div class="header-inner">
+      <a href="../index.html" class="logo">Urban<em>Store</em></a>
+      <nav aria-label="Principal">
+        <ul>
+          <li><a href="../index.html">Início</a></li>
+          <li><a href="produtos.html">Produtos</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="contato.html" aria-current="page">Contato</a></li>
+          <li><a href="pedido.html">Fazer Pedido</a></li>
+        </ul>
+      </nav>
+      <div class="header-acoes">
+        <a href="pedido.html" class="btn-carrinho abrir-carrinho">🛒 Carrinho <span class="carrinho-num">3</span></a>
+              <button id="btn-menu-mobile" aria-label="Abrir menu" aria-expanded="false">☰</button>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <nav class="breadcrumb" aria-label="Localização">
+      <a href="../index.html">Início</a>
+      <span aria-hidden="true">›</span>
+      <span aria-current="page">Contato</span>
+    </nav>
+    <h1>Fale Conosco</h1>
+    <p>Nossa equipe está pronta para ajudar. Resposta em até 24 horas úteis.</p>
+  </section>
+
+  <main id="conteudo-principal">
+    <div class="contato-layout">
+
+      <!-- INFO LATERAL -->
+      <aside aria-labelledby="info-titulo">
+        <h3 id="info-titulo">Informações de Contato</h3>
+        <p>Prefere nos encontrar diretamente? Veja todas as formas de entrar em contato:</p>
+
+        <ul class="info-lista">
+          <li class="info-item">
+            <div class="info-icone" aria-hidden="true">📧</div>
+            <div class="info-texto">
+              <strong>E-mail</strong>
+              <span>atendimento@urbanstore.com.br</span>
+            </div>
+          </li>
+          <li class="info-item">
+            <div class="info-icone" aria-hidden="true">📞</div>
+            <div class="info-texto">
+              <strong>Telefone / WhatsApp</strong>
+              <span>(11) 99999-0000</span>
+            </div>
+          </li>
+          <li class="info-item">
+            <div class="info-icone" aria-hidden="true">📍</div>
+            <div class="info-texto">
+              <strong>Endereço</strong>
+              <span>Rua da Moda, 128 — Pinheiros, São Paulo / SP</span>
+            </div>
+          </li>
+          <li class="info-item">
+            <div class="info-icone" aria-hidden="true">💬</div>
+            <div class="info-texto">
+              <strong>Chat ao vivo</strong>
+              <span>Disponível seg–sex, das 9h às 18h</span>
+            </div>
+          </li>
+        </ul>
+
+        <h4 style="margin-top:2rem; margin-bottom:.75rem; font-size:.9rem;">Horário de Atendimento</h4>
+        <table class="horarios-tabela" aria-label="Horários de atendimento">
+          <tbody>
+            <tr><td>Segunda – Sexta</td><td>9h às 18h</td></tr>
+            <tr><td>Sábado</td><td>10h às 14h</td></tr>
+            <tr><td>Domingo e Feriados</td><td>Fechado</td></tr>
+          </tbody>
+        </table>
+
+        <div style="margin-top:2rem;">
+          <h4 style="font-size:.8rem; letter-spacing:1.5px; text-transform:uppercase; color:#7a736b; margin-bottom:1rem;">Redes Sociais</h4>
+          <nav class="footer-social" aria-label="Redes sociais">
+            <a href="#" class="social-link" aria-label="Instagram">📷</a>
+            <a href="#" class="social-link" aria-label="Facebook">📘</a>
+            <a href="#" class="social-link" aria-label="TikTok">🎵</a>
+            <a href="#" class="social-link" aria-label="Pinterest">📌</a>
+          </nav>
+        </div>
+      </aside>
+
+      <!-- FORMULÁRIO -->
+      <section aria-labelledby="form-titulo">
+        <div class="form-card">
+          <h3 id="form-titulo">Envie sua mensagem</h3>
+          <p>Preencha o formulário e entraremos em contato em breve.</p>
+
+          <form
+            id="form-contato"
+            action="#"
+            method="post"
+            novalidate
+            aria-label="Formulário de contato"
+          >
+            <div class="form-grid">
+
+              <!-- Nome -->
+              <div class="campo">
+                <label for="nome">Nome completo <span class="obrigatorio" aria-label="campo obrigatório">*</span></label>
+                <input
+                  type="text"
+                  id="nome"
+                  name="nome"
+                  placeholder="Seu nome completo"
+                  required
+                  minlength="3"
+                  maxlength="100"
+                  autocomplete="name"
+                />
+                <span class="campo-hint">Mínimo de 3 caracteres</span>
+                <span class="campo-erro" aria-live="polite"></span>
+              </div>
+
+              <!-- Sobrenome -->
+              <div class="campo">
+                <label for="sobrenome">Sobrenome</label>
+                <input
+                  type="text"
+                  id="sobrenome"
+                  name="sobrenome"
+                  placeholder="Seu sobrenome"
+                  maxlength="100"
+                  autocomplete="family-name"
+                />
+              </div>
+
+              <!-- E-mail -->
+              <div class="campo">
+                <label for="email">E-mail <span class="obrigatorio" aria-label="campo obrigatório">*</span></label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  placeholder="seu@email.com"
+                  required
+                  autocomplete="email"
+                />
+                <span class="campo-hint">Ex.: nome@dominio.com</span>
+                <span class="campo-erro" aria-live="polite"></span>
+              </div>
+
+              <!-- Telefone -->
+              <div class="campo">
+                <label for="telefone">Telefone / WhatsApp</label>
+                <input
+                  type="tel"
+                  id="telefone"
+                  name="telefone"
+                  placeholder="(11) 99999-0000"
+                  pattern="\(\d{2}\)\s?\d{4,5}-\d{4}"
+                  autocomplete="tel"
+                />
+                <span class="campo-hint">Formato: (DDD) 00000-0000</span>
+                <span class="campo-erro" aria-live="polite"></span>
+              </div>
+
+              <!-- Assunto -->
+              <div class="campo campo-completo">
+                <label for="assunto">Assunto <span class="obrigatorio" aria-label="campo obrigatório">*</span></label>
+                <select id="assunto" name="assunto" required>
+                  <option value="" disabled selected>Selecione um assunto...</option>
+                  <optgroup label="Pedidos">
+                    <option value="rastrear">Rastrear meu pedido</option>
+                    <option value="troca">Troca ou devolução</option>
+                    <option value="cancelamento">Cancelamento de pedido</option>
+                  </optgroup>
+                  <optgroup label="Produtos">
+                    <option value="disponibilidade">Disponibilidade de produto</option>
+                    <option value="tamanho">Dúvida sobre tamanho</option>
+                    <option value="qualidade">Reclamação de qualidade</option>
+                  </optgroup>
+                  <optgroup label="Outros">
+                    <option value="parceria">Proposta de parceria</option>
+                    <option value="imprensa">Imprensa / Assessoria</option>
+                    <option value="outro">Outro assunto</option>
+                  </optgroup>
+                </select>
+              </div>
+
+              <!-- Mensagem -->
+              <div class="campo campo-completo">
+                <label for="mensagem">Mensagem <span class="obrigatorio" aria-label="campo obrigatório">*</span></label>
+                <textarea
+                  id="mensagem"
+                  name="mensagem"
+                  placeholder="Descreva sua dúvida, sugestão ou problema com o máximo de detalhes..."
+                  required
+                  minlength="20"
+                  maxlength="1000"
+                  rows="5"
+                ></textarea>
+                <span class="campo-hint">Entre 20 e 1.000 caracteres</span>
+                <span class="campo-erro" aria-live="polite"></span>
+              </div>
+
+              <!-- Como conheceu -->
+              <div class="campo campo-completo">
+                <label for="origem">Como nos conheceu?</label>
+                <select id="origem" name="origem">
+                  <option value="">Selecione (opcional)</option>
+                  <option value="instagram">Instagram</option>
+                  <option value="tiktok">TikTok</option>
+                  <option value="google">Google / Pesquisa</option>
+                  <option value="amigo">Indicação de amigo</option>
+                  <option value="influencer">Influenciador(a)</option>
+                  <option value="outro">Outro</option>
+                </select>
+              </div>
+
+              <hr class="form-divisor" />
+
+              <!-- Aceitar termos -->
+              <label class="checkbox-label">
+                <input type="checkbox" name="termos" required />
+                Li e aceito a <a href="#">Política de Privacidade</a> e os
+                <a href="#">Termos de Uso</a> da UrbanStore.
+                <span class="obrigatorio" aria-label="campo obrigatório">*</span>
+              </label>
+
+              <!-- Newsletter -->
+              <label class="checkbox-label">
+                <input type="checkbox" name="newsletter" />
+                Quero receber novidades, promoções e lançamentos por e-mail.
+              </label>
+
+              <!-- Mensagem sucesso -->
+              <div class="msg-sucesso" id="msg-sucesso" role="alert" aria-live="polite">
+                ✅ <span>Mensagem enviada com sucesso! Retornaremos em até 24h.</span>
+              </div>
+
+              <!-- Ações -->
+              <div class="form-acoes">
+                <span class="aviso">🔒 Seus dados estão protegidos</span>
+                <button type="submit" class="btn btn-primario">
+                  Enviar mensagem ✉️
+                </button>
+              </div>
+
+            </div>
+          </form>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-col">
+        <div class="footer-logo">Urban<em>Store</em></div>
+        <p>Moda contemporânea para quem vive a cidade com estilo e intenção.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Loja</h4>
+        <ul>
+          <li><a href="produtos.html">Todos os produtos</a></li>
+          <li><a href="pedido.html">Fazer pedido</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="sobre.html">Sobre nós</a></li>
+          <li><a href="contato.html">Contato</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Ajuda</h4>
+        <ul><li><a href="#">FAQ</a></li></ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>© 2025 UrbanStore. Todos os direitos reservados.</p>
+    </div>
+  </footer>
+
+    <script src="../js/carrinho.js"></script>
+  <script src="../js/ui.js"></script>
+  <script src="../js/formularios.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      inicializarCarrinho();
+      inicializarUI();
+      inicializarContadores();
+      inicializarFormulario('form-contato', () => {
+        const msg = document.getElementById('msg-sucesso');
+        msg.style.display = 'flex';
+        document.getElementById('form-contato').reset();
+        document.querySelectorAll('.campo-valido').forEach(el => el.classList.remove('campo-valido'));
+        msg.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      });
+    });
+  </script>
+
+  <button id="btn-topo" aria-label="Voltar ao topo" aria-hidden="true">↑</button>
+</body>
+</html>

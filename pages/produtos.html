@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Produtos — UrbanStore</title>
+  <link rel="stylesheet" href="../css/estilos.css" />
+</head>
+<body>
+  <a href="#conteudo-principal" class="skip-link">Pular para o conteúdo</a>
+
+  <div id="overlay" class="overlay" aria-hidden="true"></div>
+  <aside id="drawer-carrinho" class="drawer" aria-label="Carrinho" aria-hidden="true" role="dialog">
+    <div class="drawer-header">
+      <h3>🛒 Meu Carrinho</h3>
+      <button id="fechar-carrinho" class="drawer-fechar" aria-label="Fechar">✕</button>
+    </div>
+    <div class="drawer-corpo">
+      <div id="carrinho-vazio" class="drawer-vazio">
+        <span>🛍️</span>
+        <p>Carrinho vazio. Explore nosso catálogo!</p>
+      </div>
+      <ul id="carrinho-lista"></ul>
+    </div>
+    <div id="carrinho-rodape" class="drawer-rodape" style="display:none;">
+      <div class="drawer-total">
+        <span>Total</span>
+        <span class="drawer-total-valor" id="carrinho-total">R$ 0,00</span>
+      </div>
+      <div class="drawer-acoes">
+        <a href="pedido.html" class="btn btn-primario">Finalizar pedido</a>
+      </div>
+      <button class="btn-limpar" id="btn-limpar-carrinho">Limpar carrinho</button>
+    </div>
+  </aside>
+
+  <header>
+    <div class="header-inner">
+      <a href="../index.html" class="logo">Urban<em>Store</em></a>
+      <nav aria-label="Principal">
+        <ul>
+          <li><a href="../index.html">Início</a></li>
+          <li><a href="produtos.html" aria-current="page">Produtos</a></li>
+          <li><a href="sobre.html">Sobre</a></li>
+          <li><a href="contato.html">Contato</a></li>
+          <li><a href="pedido.html">Fazer Pedido</a></li>
+        </ul>
+      </nav>
+      <div class="header-acoes">
+        <button id="btn-busca-header" class="icone-btn" aria-label="Pesquisar" aria-expanded="false">🔍</button>
+        <input type="search" id="campo-busca-header" class="campo-busca-header" placeholder="Buscar produto..." />
+        <button id="btn-menu-mobile" aria-label="Abrir menu" aria-expanded="false">☰</button>
+        <button class="btn-carrinho abrir-carrinho">
+          🛒 Carrinho <span class="carrinho-num">0</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <section class="page-hero">
+    <nav class="breadcrumb" aria-label="Localização">
+      <a href="../index.html">Início</a> <span>›</span>
+      <span aria-current="page">Produtos</span>
+    </nav>
+    <h1>Catálogo Completo</h1>
+    <p>Explore nossa seleção de peças para o estilo urbano moderno.</p>
+    <div class="timer-wrapper">
+      ⏱️ Ofertas do dia encerram em <span id="timer-promo">00:00:00</span>
+    </div>
+  </section>
+
+  <main id="conteudo-principal">
+    <div class="catalogo-layout">
+
+      <aside class="sidebar" aria-label="Filtros">
+        <div class="filtro-grupo">
+          <h4>Buscar</h4>
+          <div class="busca-container">
+            <span class="busca-icone">🔍</span>
+            <input type="search" id="busca-produto" placeholder="Nome do produto..." aria-label="Filtrar por nome" />
+          </div>
+        </div>
+
+        <div class="filtro-grupo">
+          <h4>Categorias</h4>
+          <ul class="filtro-lista">
+            <li><label><input type="checkbox" class="filtro-cat" value="feminino"   /> Feminino</label></li>
+            <li><label><input type="checkbox" class="filtro-cat" value="masculino"  /> Masculino</label></li>
+            <li><label><input type="checkbox" class="filtro-cat" value="calcados"   /> Calçados</label></li>
+            <li><label><input type="checkbox" class="filtro-cat" value="acessorios" /> Acessórios</label></li>
+            <li><label><input type="checkbox" class="filtro-cat" value="inverno"    /> Inverno</label></li>
+          </ul>
+        </div>
+
+        <div class="filtro-grupo">
+          <h4>Preço máximo: <strong id="filtro-preco-label">R$ 1.000,00</strong></h4>
+          <div class="range-wrapper">
+            <input type="range" id="filtro-preco-max" min="0" max="1000" value="1000" step="10" aria-label="Preço máximo" />
+            <div class="range-labels"><span>R$ 0</span><span>R$ 1.000</span></div>
+          </div>
+        </div>
+
+        <div class="filtro-grupo">
+          <h4>Disponibilidade</h4>
+          <ul class="filtro-lista">
+            <li><label><input type="checkbox" id="filtro-estoque" /> Somente em estoque</label></li>
+          </ul>
+        </div>
+      </aside>
+
+      <section aria-labelledby="catalogo-titulo">
+        <div class="catalogo-topo">
+          <div>
+            <h2 id="catalogo-titulo" style="font-size:1.4rem;margin-bottom:.25rem;">Todos os Produtos</h2>
+            <p class="catalogo-qtd" id="catalogo-qtd">Carregando...</p>
+          </div>
+          <div class="catalogo-ordenar">
+            <select id="ordenar" aria-label="Ordenar por">
+              <option value="relevancia">Mais relevantes</option>
+              <option value="menor-preco">Menor preço</option>
+              <option value="maior-preco">Maior preço</option>
+              <option value="novidades">Novidades</option>
+              <option value="mais-vendidos">Mais vendidos</option>
+            </select>
+          </div>
+        </div>
+
+        <ul class="produtos-grid" id="grid-produtos" aria-label="Produtos">
+          <li style="grid-column:1/-1;text-align:center;padding:3rem;color:var(--texto-leve);">Carregando...</li>
+        </ul>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <div class="footer-col"><div class="footer-logo">Urban<em>Store</em></div><p>Moda contemporânea para o estilo urbano.</p></div>
+      <div class="footer-col"><h4>Loja</h4><ul><li><a href="produtos.html">Todos os produtos</a></li><li><a href="pedido.html">Fazer pedido</a></li></ul></div>
+      <div class="footer-col"><h4>Empresa</h4><ul><li><a href="sobre.html">Sobre nós</a></li><li><a href="contato.html">Contato</a></li></ul></div>
+      <div class="footer-col"><h4>Ajuda</h4><ul><li><a href="#">FAQ</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>© 2025 UrbanStore.</p></div>
+  </footer>
+
+  <button id="btn-topo" aria-label="Voltar ao topo" aria-hidden="true">↑</button>
+
+  <script src="../js/carrinho.js"></script>
+  <script src="../js/produtos.js"></script>
+  <script src="../js/ui.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      inicializarCarrinho();
+      UrbanCatalogo.renderizarCatalogo();
+      UrbanCatalogo.inicializarFiltros();
+      inicializarUI();
+      lerParametrosURL();
+    });
+  </script>
+</body>
+</html>
